@@ -1,9 +1,0 @@
-eclipse.preferences.version=1
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/PATH/delimiter=\:
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/PATH/operation=replace
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/PATH/value=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin\:$PATH\:/opt/nvidia/hpc_sdk/Linux_x86_64/2021/compilers/bin
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/STATIC_RANDOM_SEED/delimiter=\:
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/STATIC_RANDOM_SEED/operation=replace
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/STATIC_RANDOM_SEED/value=yes
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/append=true
-environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1705604732/appendContributed=true
