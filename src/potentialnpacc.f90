@@ -52,6 +52,8 @@ program potentialnp
 
 
     call cpu_time(timeini)
+    !$acc data copyin(rvec(:,:)) copyout(vij(:,:))
+    !$acc parallel loop private(rijvec)
     do i=1, np
         do j=i+1, np
             rivec=rvec(i,:)
@@ -60,8 +62,11 @@ program potentialnp
             r2ij=dot_product(rijvec, rijvec)
             rij=sqrt(r2ij)
             vij(i,j)=potential(rij)
+!            vijsum=vijsum+vij(i,j)
         end do
     end do
+    !$acc end parallel
+    !$acc end data
     call cpu_time(timefin)
     write(*,*) "Vij(1,np) =", vij(1,np)
     write(*,*) "Tiempo ejecución = ", timefin-timeini, " s para ", np, " partículas."
