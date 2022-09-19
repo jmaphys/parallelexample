@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1730696338/PATH/delimiter=\:
+environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1730696338/PATH/operation=append
+environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1730696338/PATH/value=/opt/nvidia/hpc_sdk/Linux_x86_64/2021/compilers/bin
+environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1730696338/append=true
+environment/project/photran.managedbuild.toolchain.gnu.fortran.exe.debug.1730696338/appendContributed=true

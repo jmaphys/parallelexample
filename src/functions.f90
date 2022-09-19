@@ -5,6 +5,7 @@ module functions
 contains
 
     real(dp) function potential(rij)
+    !$acc routine seq
         real(dp) :: rij
         potential= rij*rij
     end function

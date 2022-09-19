@@ -2,7 +2,7 @@ src_path=src/
 
 .PHONY: all
 
-all: base multicore gpu
+all: base multicore
 #multicore base gpu
 
 
@@ -21,4 +21,3 @@ gpu:
 clean:
 	rm *.o
 	rm *.mod
-	

@@ -7,7 +7,7 @@ program potentialnp
     integer :: np
     integer :: ierr
 
-    integer, dimension(1):: semilla
+    integer, dimension(:), allocatable:: semilla
 
     integer :: n
 
@@ -30,32 +30,30 @@ program potentialnp
 
     read(*,*) np
 
-    if (np .gt. 2000) then
-        print*, "np debe ser menor de 2000."
-        print*, "Programa finalizado"
-    end if
-
     write(*,*) np
 
     allocate(rvec(np, 3), stat=ierr)
     allocate(vij(np,np), stat=ierr)
-    n=0
-    semilla(1)=1234
+
     call random_seed(size=n)
-    call random_seed(put=semilla)
+    allocate(semilla(n), stat=ierr)
+    semilla=1234
+    call random_seed(PUT=semilla)
+
+
 
     do i=1, np
         do j=1, 3
             call random_number(randnum)
-            rvec(i,j)=randnum*5
+            rvec(i,j)=randnum*5._dp
         end do
     end do
 
-    do i=1,np
-        write(40,'(3f8.3)') rvec
-    end do
+!    do i=1,np
+!        write(*,'(3f8.3)') rvec
+!    end do
 
-    stop
+    !stop
 
 !    open(200, file="indata.txt", status="old")
 !
@@ -64,19 +62,18 @@ program potentialnp
 !    end do
 
 
-    vijsum=0.
     call cpu_time(timeini)
-    !$acc data copyin(rvec(:,:), vij(:,:)) copyout(vij(:,:))
-    !$acc parallel loop private(rijvec) reduction(+:vijsum)
+    !$acc data copyin(rvec(:,:)) copyout(vij(:,:))
+    !$acc parallel loop private(rijvec)
     do i=1, np
         do j=i+1, np
-!            rivec=rvec(i,:)
-!            rjvec=rvec(j,:)
+            rivec=rvec(i,:)
+            rjvec=rvec(j,:)
             rijvec=rvec(i,:) - rvec(j,:)
             r2ij=dot_product(rijvec, rijvec)
             rij=sqrt(r2ij)
-            vij(i,j)=rij*rij !potential(rij)
-            vijsum=vijsum+vij(i,j)
+            vij(i,j)=potential(rij)
+!            vijsum=vijsum+vij(i,j)
         end do
     end do
     !$acc end parallel
@@ -87,7 +84,7 @@ program potentialnp
     !        write(*, '(I4,2X, I4, f12.6)') i, j, vij(i,j)
     !    end do
     !end do
-    write(*,*) "Vijsum =", vijsum
+    write(*,*) "Vij(1,np) =", vij(1,np)
     write(*,*) "Tiempo ejecución = ", timefin-timeini, " s para ", np, " partículas."
 
 end program potentialnp
